@@ -1,0 +1,42 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>Encadrant</h1>
+<a href="{% url 'create_encadrant' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th scope="col">nom</th>
+            <th scope="col">prenom</th>
+            <th scope="col">email</th>
+            <th scope="col">numero_de_telephone</th>
+            <th scope="col">profile</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for encadrant in encadrant %}
+        <tr>
+             
+            <th scope="row">{{encadrant.nom}}</th>
+            <th scope="row">{{encadrant.prenom}}</th>
+            <th scope="row">{{encadrant.email}}</th>
+            <th scope="row">{{encadrant.numero}}</th>
+            <th scope="row">{{encadrant.Type_Encadrant.Type_Encadrant}}</th>
+            
+             
+
+            <td><a class="btn btn-primary btn-xs" href="{% url 'encadrant_update' encadrant.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
+            <td><a href="{% url 'delete_encadrant' encadrant.id  %}" class="btn btn-danger">Cancel</a></td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% comment %}
+<div class="alert alert-primary" role="alert"> {% endcomment %}
+</div>
+
+{% endblock %}

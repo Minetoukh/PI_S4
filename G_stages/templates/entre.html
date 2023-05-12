@@ -1,0 +1,34 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>entreprise</h1>
+<a href="{% url 'create_entre' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th scope="col">libele</th>
+             
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entre in entre %}
+        <tr>
+             
+            <th scope="row">{{entre.libele}}</th>
+             
+
+            <td><a class="btn btn-primary btn-xs" href="{% url 'entre_update' entre.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
+            <td><a href="{% url 'delete_entre' entre.id  %}" class="btn btn-danger">Cancel</a></td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% comment %}
+<div class="alert alert-primary" role="alert"> {% endcomment %}
+</div>
+
+{% endblock %}

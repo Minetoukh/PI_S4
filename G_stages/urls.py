@@ -1,0 +1,71 @@
+
+
+from os import path
+from . import views
+from . import views 
+from django.urls import path  
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('', views.login, name='login'),
+    path('index', views.index, name='index'),
+    path('logout/', views.logout, name='logout'),
+    path('register/', views.register, name='register'),
+   
+
+
+   # dep
+    path('dep/<int:pk>/update/', views.depUpdateView.as_view(), name='dep_update'),
+    path('dep/<int:pk>/delete/', views.depDeleteView.as_view(), name='delete_dep'),
+    path('dep/', views.dep, name='dep'),
+    path('create_dep/', views.depCreateView.as_view(), name='create_dep'),
+
+
+    # entre
+    path('entre/<int:pk>/update/', views.entreUpdateView.as_view(), name='entre_update'),
+    path('entre/<int:pk>/delete/', views.entreDeleteView.as_view(), name='delete_entre'),
+    path('entre/', views.entre, name='entre'),
+    path('create_entre/', views.entreCreateView.as_view(), name='create_entre'),
+
+    
+
+
+    # etud
+    path('etud/<int:pk>/update/', views.etudUpdateView.as_view(), name='etud_update'),
+    path('etud/<int:pk>/delete/', views.etudDeleteView.as_view(), name='delete_etud'),
+    path('etud/', views.etud, name='etud'),
+    path('createetud/', views.etudCreateView.as_view(), name='create_etud'),
+
+     path('encours/', views.encours, name='encours'),
+
+
+
+    
+   # Type_Encadrant
+    path('Type_Encadrant/<int:pk>/update/', views.Type_EncadrantUpdateView.as_view(), name='Type_Encadrant_update'),
+    path('Type_Encadrant/<int:pk>/delete/', views.Type_EncadrantDeleteView.as_view(), name='delete_Type_Encadrant'),
+    path('type_Encadrant/', views.type_Encadrant, name='type_Encadrant'),
+    path('create_Type_Encadrant/', views.Type_EncadrantCreateView.as_view(), name='create_Type_Encadrant'),
+
+
+    
+   # Type_stage
+    path('type_stage/<int:pk>/update/', views.type_stageUpdateView.as_view(), name='type_stage_update'),
+    path('type_stage/<int:pk>/delete/', views.type_stageDeleteView.as_view(), name='delete_type_stage'),
+    path('type_stage/', views.type_stage, name='type_stage'),
+    path('create_type_stage/', views.type_stageCreateView.as_view(), name='create_type_stage'),
+
+     #Simester
+    path('simester/<int:pk>/update/', views.simesterUpdateView.as_view(), name='simester_update'),
+    path('simester/<int:pk>/delete/', views.simesterDeleteView.as_view(), name='delete_simester'),
+    path('simester/', views.simester, name='simester'),
+    path('create_simester/', views.simesterCreateView.as_view(), name='create_simester'),
+
+
+    # encadrant
+    path('encadrant/<int:pk>/update/', views.encadrantUpdateView.as_view(), name='encadrant_update'),
+    path('encadrant/<int:pk>/delete/', views.encadrantDeleteView.as_view(), name='delete_encadrant'),
+    path('encadrant/', views.encadrant, name='encadrant'),
+    path('createencadrant/', views.encadrantCreateView.as_view(), name='create_encadrant'),
+]

@@ -1,0 +1,34 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>departement</h1>
+<a href="{% url 'create_dep' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th scope="col">libele</th>
+             
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dep in dep %}
+        <tr>
+             
+            <th scope="row">{{dep.libele}}</th>
+             
+
+            <td><a class="btn btn-primary btn-xs" href="{% url 'dep_update' dep.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
+            <td><a href="{% url 'delete_dep' dep.id  %}" class="btn btn-danger">Cancel</a></td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% comment %}
+<div class="alert alert-primary" role="alert"> {% endcomment %}
+</div>
+
+{% endblock %}

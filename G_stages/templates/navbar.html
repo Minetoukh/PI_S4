@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .dropbtn {
+            background-color: dark;
+            color: white;
+            padding: 16px;
+            font-size: 20px;
+            border: none;
+        }
+        
+        .dropdown {
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            font-size: 15px;
+            font-style: italic;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .nav-link {
+            font-style: italic;
+            color: white;
+            font-size: 20px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #6f71ed;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+            background-color: black;
+        }
+        
+        .navbar {
+            padding-left: 0%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-end navbar-dark bg-dark">
+
+        <a class="nav-link" href="/index">Gestions_Stages</a>
+
+        <div class="dropdown">
+            <div class="dropbtn">Administration</div>
+            <div class="dropdown-content">
+                <a href="{% url 'dep' %}">G_departements</a>
+                <a href="{% url 'simester' %}">G_semesters</a>
+                <a href="{% url 'etud' %}">G_etudiants</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <div class="dropbtn">Stages</div>
+            <div class="dropdown-content">
+                <a href="{% url 'encours' %}">Saisir un Stage</a>
+                <a href="#">Stage terminer</a>
+                <a href="#">Stage en cours</a>
+                
+            </div>
+        </div>
+
+        <!-- <div class="dropdown">
+            <div class="dropbtn">Entreprise</div>
+            <div class="dropdown-content">
+                <a href="{% url 'entre' %}">Entreprise</a>
+                <a href="{% url 'type_Encadrant' %}">Type_Encadrant</a>
+                
+                <a href="{% url 'type_stage' %}">type_stage</a>
+                 
+                 
+            </div>
+         
+        </div> -->
+         
+         
+         
+
+        <a class="nav-link" href="#">Compte</a>
+        <a class="nav-link" href="/logout">Déconnexion</a>
+    </nav>
+
+    <!-- <div class="dropdown">
+  
+</div> -->
+
+</body>
+
+</html>

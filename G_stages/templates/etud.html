@@ -1,0 +1,41 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>etudiants</h1>
+<a href="{% url 'create_etud' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th scope="col">Matricule</th>
+            <th scope="col">nom</th>
+            <th scope="col">prenom</th>
+            <th scope="col">dep</th>
+             
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for etud in etud %}
+        
+        <tr>
+             
+            <th scope="row">{{etud.matricule}}</th>
+            <th scope="row">{{etud.Nom}}</th>
+            <th scope="row">{{etud.prenom}}</th>
+            <th scope="row">{{etud.Dep.libele}}</th>
+             
+
+            <td><a class="btn btn-primary btn-xs" href="{% url 'etud_update' etud.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
+            <td><a href="{% url 'delete_etud' etud.id  %}" class="btn btn-danger">Cancel</a></td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% comment %}
+<div class="alert alert-primary" role="alert"> {% endcomment %}
+</div>
+
+{% endblock %}

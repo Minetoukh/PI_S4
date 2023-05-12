@@ -1,0 +1,35 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>type_stage</h1>
+<a href="{% url 'create_type_stage' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th scope="col">libele</th>
+            
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for type_stage in type_stage %}
+        <tr>
+             
+            <th scope="row">{{type_stage.libele}}</th>
+            
+             
+
+            <td><a class="btn btn-primary btn-xs" href="{% url 'type_stage_update' type_stage.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
+            <td><a href="{% url 'delete_type_stage' type_stage.id  %}" class="btn btn-danger">Cancel</a></td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% comment %}
+<div class="alert alert-primary" role="alert"> {% endcomment %}
+</div>
+
+{% endblock %}
