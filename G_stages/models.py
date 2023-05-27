@@ -77,7 +77,66 @@ class Encadrent(models.Model):
     prenom = models.CharField(max_length=50)
     email = models.EmailField()
     numero= models.CharField(max_length=20)
-    Type_Encadrant = models.ForeignKey(Type_Encadrant, on_delete=models.CASCADE)
+    
 
     def _str_(self):
         return self.id
+    
+
+
+
+
+    
+
+
+
+
+class grp(models.Model):
+    idSimester = models.ForeignKey(Simester, on_delete=models.CASCADE )
+    idEtud = models.ForeignKey(Etud, on_delete=models.CASCADE )
+
+    class Meta:
+        unique_together = ('idSimester', 'idEtud')
+
+    libele = models.CharField(max_length=50)
+    membres = models.CharField(max_length=50)
+
+    def _str_(self):
+        return self.id
+
+class Stage(models.Model):
+    titre = models.CharField(max_length=50)
+    dattedebut = models.DateField(max_length=50)
+    dattefin= models.DateField(max_length=50)
+    datesoutenance = models.DateField(max_length=50)
+    lieu = models.CharField(max_length=50)
+    Annee = models.CharField(max_length=50)
+    status = models.BooleanField(default=True)
+    grp=models.ForeignKey(grp, on_delete=models.CASCADE, to_field='id' )
+    def _str_(self):
+        return self.id
+    
+
+
+
+class Encdprof(models.Model):
+    nom = models.CharField(max_length=50)
+    prenom = models.CharField(max_length=50)
+    email = models.EmailField()
+    numero= models.CharField(max_length=20)
+    
+
+    def _str_(self):
+        return self.id
+class Encadrer (models.Model):
+    Stage=models.ForeignKey(Stage, on_delete=models.CASCADE)
+    Encadrent=models.ForeignKey(Encadrent, on_delete=models.CASCADE)
+
+    def _str_(self):
+        return self.id
+
+
+class contenir (models.Model):
+    grp=models.ForeignKey(grp, on_delete=models.CASCADE, to_field='id' )
+    Dep=models.ForeignKey(Dep, on_delete=models.CASCADE)
+

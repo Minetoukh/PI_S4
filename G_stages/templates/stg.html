@@ -1,0 +1,26 @@
+<form method="post" action="{% url 'ajouter_stage' %}">
+  {% csrf_token %}
+    <label for="titre">titre :</label>
+    <input type="text" id="titre" name="titre" required><br><br>
+    <label for="dattedebut">dattedebut :</label>
+    <input type="date" id="dattedebut" name="dattedebut" required><br><br>
+    <label for="dattefin">dattefin :</label>
+    <input type="date" id="dattefin" name="dattefin" required><br><br>
+    <label for="datesoutenance">datesoutenance :</label>
+    <input type="date" id="datesoutenance" name="datesoutenance" required><br><br>
+    <label for="lieu">lieu :</label>
+    <input type="text" id="lieu" name="lieu" required><br><br>
+    
+    <label for="Annee">Annee :</label>lieu
+    
+    <select type="text" id="Annee" name="Annee" required>
+      <option>2021</option>
+      <option>2022</option>
+      <option>2023</option>
+      
+    </select><br><br>
+
+    <input type="submit" value="Ajouter">
+</form>
+
+ 

@@ -297,3 +297,96 @@ class encadrantDeleteView(DeleteView):
     model = Encadrent
     template_name = 'Encadrent_confirm_delete.html'
     success_url = reverse_lazy('encadrant')    
+
+
+
+#etd
+def etd(request):
+    return render(request, 'etd.html')
+
+#encad
+def encad(request):
+    return render(request, 'ecd.html')
+
+#stg
+def stg(request):
+    return render(request, 'stg.html')
+
+ 
+ 
+
+def ajouter_groupe(request):
+    if request.method == 'POST':
+        Nom = request.POST['Nom']
+        prenom = request.POST['prenom']
+        email = request.POST['email']
+        filiere = request.POST['filiere']
+        libele = request.POST['libele']
+        groupe = Groupe(Nom=Nom, prenom=prenom, email=email, filiere=filiere, libele=libele)
+        groupe.save()
+        return render(request, 'encours.html')
+    else:
+        return render(request, 'etd.html')
+    
+
+def ajouter_stage(request):
+    if request.method == 'POST':
+        titre = request.POST['titre']
+        dattedebut = request.POST['dattedebut']
+        dattefin = request.POST['dattefin']
+        datesoutenance = request.POST['datesoutenance']
+        lieu = request.POST['lieu']
+        Annee = request.POST['Annee']
+        stage = Stage(titre=titre, dattedebut=dattedebut, dattefin=dattefin, datesoutenance=datesoutenance, lieu=lieu, Annee=Annee)
+        stage.save()
+        return render(request, 'encours.html')
+    else:
+        return render(request, 'stg.html')
+
+
+
+def ajouter_encd(request):
+    if request.method == 'POST':
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        email = request.POST['email']
+        profile = request.POST['profile']
+        
+        encd = Encadrent(nom=nom, prenom=prenom, email=email, profile=profile)
+        encd.save()
+        return render(request, 'encours.html')
+    else:
+        return render(request, 'ecd.html')
+    
+#stage
+def stage(request):
+    
+    stage = Stage.objects.all()
+    return render(request, 'stage_encours.html', {"stage": stage})
+
+
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .forms import grpForm
+from .models import Etud
+
+def creer_groupe(request):
+    if request.method == 'POST':
+        idSimester = request.POST.get('idSimester')
+        idEtud = request.POST.get('idEtud')
+        libele = request.POST.get('libele')
+        membres = request.POST.getlist('membres')
+        groupe = grp(libele=libele, idSimester=idSimester, idEtud=idEtud)
+        groupe.save()
+        groupe.membres.set(membres)
+        return JsonResponse({'encours': True})
+    else:
+        return render(request, 'etd.html')
+
+def autocomplete_etudiants(request):
+    term = request.GET.get('term')
+    etudiants = Etud.objects.filter(matricule__startswith=term).values('matricule', 'Nom')
+    data = [{'matricule': etudiant['matricule'], 'Nom': etudiant['Nom']} for etudiant in etudiants]
+    return JsonResponse(data, safe=False)
+
+ 

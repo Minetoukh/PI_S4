@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer un groupe</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+   {% block body %}
+    <h1>Créer un groupe</h1>
+    
+    <form method="post">
+       
+        {% csrf_token %}
+        <div>
+          <label for="id_idSimester">idSimester:</label>
+          <input type="number" name="idSimester" id="id_idSimester">
+       </div>
+        <div>
+          <label for="id_idEtud">idEtud:</label>
+          <input type="number" name="idEtud" id="id_idEtud">
+        </div>
+        <div>
+          <label for="id_libele">Libelé:</label>
+          <input type="text" name="libele" id="id_libele">
+      </div>
+      <div>
+          <label for="id_membres">Membres:</label>
+          <input type="text" name="membres" id="id_membres">
+      </div>
+      
+        <button type="submit">Enregistrer</button>
+    </form>
+    {% endblock %}
+    <script>
+        $(document).ready(function() {
+            $("#id_membres").autocomplete({
+                source: function(request, response) {
+                    $.getJSON("{% url 'autocomplete_etudiants' %}", {
+                        term: request.term
+                    }, function(data) {
+                        response(data);
+                    });
+                },
+                minLength: 2,
+                select: function(event, ui) {
+                    var selectedValue = ui.item.value;
+                    var input = $("<input>").attr("type", "hidden").attr("name", "membres").val(selectedValue);
+                    $("form").append(input);
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

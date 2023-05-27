@@ -57,3 +57,16 @@ class encadrantForm(forms.ModelForm):
     class Meta:
         model = models.Encadrent
         fields = '__all__'  
+
+
+ 
+
+
+class grpForm(forms.ModelForm):
+    class Meta:
+        model = models.grp
+        fields = ['idSimester', 'idEtud', 'libele', 'membres']
+
+        widgets = {
+           'membres': forms.TextInput(attrs={'id': 'membres-input'}),
+        }

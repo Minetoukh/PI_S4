@@ -6,7 +6,8 @@ from . import views
 from django.urls import path  
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.urls import path
+from .views import creer_groupe, autocomplete_etudiants
 urlpatterns = [
     path('', views.login, name='login'),
     path('index', views.index, name='index'),
@@ -68,4 +69,21 @@ urlpatterns = [
     path('encadrant/<int:pk>/delete/', views.encadrantDeleteView.as_view(), name='delete_encadrant'),
     path('encadrant/', views.encadrant, name='encadrant'),
     path('createencadrant/', views.encadrantCreateView.as_view(), name='create_encadrant'),
+
+    #etd
+    path('etd/', views.etd, name='etd'),
+    #encad
+    path('encad/', views.encad, name='encad'),
+     #stg
+    path('stg/', views.stg, name='stg'),
+     #stg
+    path('stage/', views.stage, name='stage'),
+    path('ajouter_groupe/',views.ajouter_groupe, name='ajouter_groupe'),
+    path('ajouter_stage/',views.ajouter_stage, name='ajouter_stage'),
+    path('ajouter_encd/',views.ajouter_encd, name='ajouter_encd'),
+
+    
+
+    path('creer-groupe/', creer_groupe, name='creer_groupe'),
+    path('autocomplete-etudiants/', autocomplete_etudiants, name='autocomplete_etudiants'),
 ]

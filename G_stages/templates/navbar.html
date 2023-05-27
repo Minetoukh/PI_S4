@@ -79,9 +79,13 @@
         <div class="dropdown">
             <div class="dropbtn">Administration</div>
             <div class="dropdown-content">
-                <a href="{% url 'dep' %}">G_departements</a>
-                <a href="{% url 'simester' %}">G_semesters</a>
-                <a href="{% url 'etud' %}">G_etudiants</a>
+                <a href="{% url 'dep' %}">Departements</a>
+                <a href="{% url 'simester' %}">Simesters</a>
+                <a href="{% url 'etud' %}">Etudiants</a>
+                <a href="{% url 'encadrant' %}">Encadrent Academy</a>
+                <a href="#">Utilisateurs</a>
+
+                
             </div>
         </div>
 
@@ -90,7 +94,7 @@
             <div class="dropdown-content">
                 <a href="{% url 'encours' %}">Saisir un Stage</a>
                 <a href="#">Stage terminer</a>
-                <a href="#">Stage en cours</a>
+                <a href="{% url 'stage' %}">Stage en cours</a>
                 
             </div>
         </div>
@@ -109,7 +113,7 @@
         </div> -->
          
          
-         
+
 
         <a class="nav-link" href="#">Compte</a>
         <a class="nav-link" href="/logout">Déconnexion</a>
