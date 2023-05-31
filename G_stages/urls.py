@@ -83,7 +83,14 @@ urlpatterns = [
     path('ajouter_encd/',views.ajouter_encd, name='ajouter_encd'),
 
     
+   
+    path('import/', views.import_excel, name='import_excel'),
+    path('view/', views.view_encadrent, name='view_encadrent'),
 
     path('creer-groupe/', creer_groupe, name='creer_groupe'),
     path('autocomplete-etudiants/', autocomplete_etudiants, name='autocomplete_etudiants'),
+
+
+
+    
 ]

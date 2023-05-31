@@ -1,3 +1,7 @@
+{% extends "base/base.html" %} {% block body %}
+<h1>Saisir un stage</h1>
+<pre> <a href="{% url 'stg' %}">stage</a>                               <a href="{% url 'encad' %}">Encadrant</a>                                       <a href="{% url 'etd' %}">Identification sur groupe </a>  </pre>
+
 <form method="post" action="{% url 'ajouter_stage' %}">
   {% csrf_token %}
     <label for="titre">titre :</label>
@@ -22,5 +26,5 @@
 
     <input type="submit" value="Ajouter">
 </form>
-
+{% endblock %}
  

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personnes enregistrées</title>
+</head>
+<body>
+    <h1>Personnes enregistrées</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Numéro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for encadrent in encadrent %}
+            <tr>
+                <td>{{ encadrent.nom }}</td>
+                <td>{{ encadrent.prenom }}</td>
+                <td>{{ encadrent.email }}</td>
+                <td>{{ encadrent.numero }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

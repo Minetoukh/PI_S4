@@ -8,7 +8,9 @@ from .models import *
 from .forms import *
 from django.shortcuts import render
 from django.views.generic import UpdateView, DeleteView, CreateView
+import pandas as pd
 
+from django.shortcuts import render
 # Create your views here.
 def index(request):
     if request.session.get('username', None):
@@ -386,7 +388,79 @@ def creer_groupe(request):
 def autocomplete_etudiants(request):
     term = request.GET.get('term')
     etudiants = Etud.objects.filter(matricule__startswith=term).values('matricule', 'Nom')
-    data = [{'matricule': etudiant['matricule'], 'Nom': etudiant['Nom']} for etudiant in etudiants]
+    data = [{'matricule': etudiants['matricule'], 'Nom': etudiants['Nom']} for etudiants in etudiants]
+    
     return JsonResponse(data, safe=False)
 
+
+
+import pandas as pd
+from django.shortcuts import render
  
+
+def import_excel(request):
+    if request.method == 'POST':
+        excel_file = request.FILES['file']
+        data_frame = pd.read_excel(excel_file)
+
+        # Parcours des lignes du DataFrame pandas
+        for index, row in data_frame.iterrows():
+            nom = row['nom']
+            prenom = row['prenom']
+            email = row['email']
+            numero = row['numero']
+
+            # Création d'une instance Person et enregistrement dans la base de données
+            Encadrent.objects.create(nom=nom, prenom=prenom, email=email, numero=numero)
+
+        return render(request, 'import_success.html')
+
+    return render(request, 'import_excel.html')
+
+
+ 
+
+def view_encadrent(request):
+    encadrent = Encadrent.objects.all()
+    return render(request, 'view_encadrent.html', {'encadrent': encadrent})
+
+ 
+
+import openpyxl
+from django.http import HttpResponse
+
+def export_excel(request):
+    # Créer un nouveau classeur Excel
+    workbook = openpyxl.Workbook()
+    
+    # Sélectionner la feuille active
+    sheet = workbook.active
+    
+    # Ajouter des en-têtes de colonne
+    sheet['A1'] = 'Nom'
+    sheet['B1'] = 'Prénom'
+    sheet['C1'] = 'Email'
+    sheet['D1'] = 'Numéro'
+    
+    # Obtenir les données à exporter (supposons que vous ayez un modèle "Person" avec les champs nom, prenom, email, et numero)
+    queryset = Encadrent.objects.all()
+    
+    # Parcourir les données et les ajouter à la feuille Excel
+    row = 2  # Commencer à la deuxième ligne
+    for Encadrent in queryset:
+        sheet.cell(row=row, column=1).value = Encadrent.nom
+        sheet.cell(row=row, column=2).value = Encadrent.prenom
+        sheet.cell(row=row, column=3).value = Encadrent.email
+        sheet.cell(row=row, column=4).value = Encadrent.numero
+        row += 1
+    
+    # Définir le type de contenu de la réponse HTTP
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    
+    # Définir le nom du fichier Excel
+    response['Content-Disposition'] = 'attachment; filename="export.xlsx"'
+    
+    # Sauvegarder le classeur Excel dans la réponse HTTP
+    workbook.save(response)
+    
+    return response
