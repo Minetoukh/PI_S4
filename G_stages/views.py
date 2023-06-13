@@ -12,6 +12,7 @@ import pandas as pd
 
 from django.shortcuts import render
 # Create your views here.
+from django.conf import settings
 def index(request):
     if request.session.get('username', None):
         x = request.session['username']
@@ -149,26 +150,39 @@ class entreDeleteView(DeleteView):
 
 
 
-
+#et
+def et(request):
+    dep=Dep.objects.all()
+    etud =Etud.objects.all()
+    return render(request,'etud_form.html' ,{"etud": etud,"dep": dep})
 #etud
 def etud(request):
-    
+     
     etud = Etud.objects.all()
     return render(request, 'etud.html', {"etud": etud})
 
 
+
 class etudCreateView(CreateView):
     model = Etud
+    model = Dep
     template_name = 'etud_form.html'
     fields = '__all__'
     success_url = reverse_lazy('etud')
 
-
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+from .models import Etud
+from .forms import etudForm
 class etudUpdateView(UpdateView):
     model = Etud
     form_class = etudForm
     template_name = 'update_etud.html'
-    success_url = reverse_lazy('etud')
+
+    def get_success_url(self):
+        dep = self.object.Dep
+        success_url = reverse_lazy('etud') + f'?dep={dep}'
+        return success_url
 
 
 class etudDeleteView(DeleteView):
@@ -385,12 +399,14 @@ def creer_groupe(request):
     else:
         return render(request, 'etd.html')
 
+
 def autocomplete_etudiants(request):
-    term = request.GET.get('term')
-    etudiants = Etud.objects.filter(matricule__startswith=term).values('matricule', 'Nom')
-    data = [{'matricule': etudiants['matricule'], 'Nom': etudiants['Nom']} for etudiants in etudiants]
-    
+    term = request.POST.get('matricule')
+    etudiants = Etud.objects.filter(matricule__startswith=term).values('matricule', 'Nom', 'prenom')
+    data = [{'matricule': etudiant['matricule'], 'NomComplet': str(etudiant['matricule']) +"- "+etudiant['Nom'] + ' ' + etudiant['prenom']} for etudiant in etudiants]
     return JsonResponse(data, safe=False)
+
+
 
 
 
@@ -464,3 +480,35 @@ def export_excel(request):
     workbook.save(response)
     
     return response
+
+from django.shortcuts import render
+from .models import Etud, Dep
+
+def add_etudiant(request):
+    if request.method == 'POST':
+        matricule = request.POST.get('matricule')
+        Nom = request.POST.get('Nom')
+        prenom = request.POST.get('prenom')
+        dep = request.POST.get('dep')
+
+        # Récupérer le département correspondant à l'ID sélectionné
+        dep = Dep.objects.get(id=dep)
+
+        # Créer une nouvelle instance d'Etud avec les données fournies
+        etud = Etud(matricule=matricule, Nom=Nom, prenom=prenom, Dep=dep)
+        etud.save()
+        
+
+        # Rediriger vers une page de confirmation ou effectuer toute autre action souhaitée
+
+    # Récupérer tous les départements disponibles
+    dep = Dep.objects.all()
+
+    context = {
+        'dep': dep
+    }
+    etud = Etud.objects.all()
+    return render(request, 'etud.html', {"etud": etud})
+
+
+

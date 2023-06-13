@@ -1,7 +1,10 @@
 {% extends "base/base.html" %} {% block body %}
 <h1>Encadrant</h1>
 <a href="{% url 'create_encadrant' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
+ 
 
+<a href="{% url 'import_excel' %}"  class="btn btn-success" style="width: max-content;"  >import_excel</a>
+<a href="{% url 'export_to_excel' %}"  class="btn btn-success" style="width: max-content;">Télécharger en Excel</a>
 <table class="table">
     <thead>
         <tr>

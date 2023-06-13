@@ -2,9 +2,25 @@
 <!-- <div class="form-group"> -->
     {% extends "base/base.html" %} {% block body %}
     <form method="post" class="form-control form-control-lg">
-        {% csrf_token %} {{ form.as_p }}
-        <input type="submit" value="Save" class="btn btn-outline-success btn-lg">
+        {% csrf_token %}
+        <h1>Modifier un étudiant</h1>
+    <form method="post" action="{% url 'etud_update' etud.id %}">
+        {% csrf_token %}
+        <label for="matricule">Matricule :</label>
+        <input type="number" id="matricule" name="matricule" value="{{ etud.matricule }}" required><br><br>
+        <label for="Nom">Nom :</label>
+        <input type="text" id="Nom" name="Nom" value="{{ etud.Nom }}" required><br><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" value="{{ etud.prenom }}" required><br><br>
+        <label for="dep">libele :</label>
+        <select name="dep" id="dep">
+            {% for dep in dep %}
+            <option value="{{ dep.id }}">{{ dep.libele }}</option>
+            {% endfor %}
+          </select><br>
+        <input type="submit" value="Enregistrer">
     </form>
+        
     </div>
     
     {% endblock %}

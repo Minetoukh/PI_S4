@@ -30,8 +30,8 @@ urlpatterns = [
     path('create_entre/', views.entreCreateView.as_view(), name='create_entre'),
 
     
-
-
+    path('et/', views.et, name='et'),
+    path('add_etudiant/', views.add_etudiant, name='add_etudiant'),
     # etud
     path('etud/<int:pk>/update/', views.etudUpdateView.as_view(), name='etud_update'),
     path('etud/<int:pk>/delete/', views.etudDeleteView.as_view(), name='delete_etud'),
@@ -90,7 +90,8 @@ urlpatterns = [
     path('creer-groupe/', creer_groupe, name='creer_groupe'),
     path('autocomplete-etudiants/', autocomplete_etudiants, name='autocomplete_etudiants'),
 
-
-
+    path('export_excel/', views.export_excel, name='export_excel'),
+    
+    path('export_excel/', views.export_excel, name='export_excel'),
     
 ]

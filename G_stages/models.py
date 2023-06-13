@@ -76,7 +76,7 @@ class Encadrent(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     email = models.EmailField()
-    numero= models.CharField(max_length=20)
+    numero = models.CharField(max_length=20)
     
 
     def _str_(self):

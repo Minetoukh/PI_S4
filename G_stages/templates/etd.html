@@ -20,7 +20,7 @@
                         success: function (data) {
                             response($.map(data, function (item) {
                                 return {
-                                    label: item.Nom,
+                                    label: item.NomComplet,
                                     value: item.matricule
                                 };
                             }));
@@ -42,7 +42,7 @@
                 }
             }).autocomplete("source")._renderItem = function (ul, item) {
                 return $("<li>")
-                    .append("<div>" + item.Nom + "</div>")
+                    .append("<div>" + item.NomComplet +"</div>")
                     .appendTo(ul);
             };
         });

@@ -2,7 +2,9 @@
 <h1>Create a new semestre</h1>
 <form method="post" class="form-control">
     <div class="form-group">
-        {% csrf_token %} {{ form.as_p }}
+        {% csrf_token %} 
+        <label for="libele">libele :</label>
+      <input type="text" id="libele" name="libele" required><br><br>
     </div>
     <input type="submit" value="Create" class="btn btn-success">
 </form>
