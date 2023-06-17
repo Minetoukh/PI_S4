@@ -72,6 +72,7 @@ urlpatterns = [
 
     #etd
     path('etd/', views.etd, name='etd'),
+    path('addetd/', views.addetd, name='addetd'),
     #encad
     path('encad/', views.encad, name='encad'),
      #stg
@@ -85,7 +86,7 @@ urlpatterns = [
     
    
     path('import/', views.import_excel, name='import_excel'),
-    path('view/', views.view_encadrent, name='view_encadrent'),
+    
 
     path('creer-groupe/', creer_groupe, name='creer_groupe'),
     path('autocomplete-etudiants/', autocomplete_etudiants, name='autocomplete_etudiants'),
@@ -93,5 +94,9 @@ urlpatterns = [
     path('export_excel/', views.export_excel, name='export_excel'),
     
     path('export_excel/', views.export_excel, name='export_excel'),
+    
+
+    
+    path('compte/', views.compte, name='compte'),
     
 ]

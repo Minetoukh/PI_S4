@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
@@ -10,6 +11,25 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+     <!-- Vos balises d'en-tête existantes -->
+     <style>
+      /* Styles spécifiques au footer */
+      footer {
+          background-color: #f5ecec;
+          padding: 2px;
+          text-align: center;
+      }
+
+      footer a {
+          color: #666;
+          text-decoration: none;
+          margin-right: 10px;
+      }
+
+      footer a:hover {
+          color: #000;
+      }
+  </style>
   </head>
 
   <body>
@@ -18,5 +38,9 @@
         {% block body %}
 		{% endblock %}
     </main>
+    <footer>
+      <p>Email : contact@example.com</p>
+       
+  </footer>
   </body>
 </html>

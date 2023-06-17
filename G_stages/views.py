@@ -316,9 +316,7 @@ class encadrantDeleteView(DeleteView):
 
 
 
-#etd
-def etd(request):
-    return render(request, 'etd.html')
+
 
 #encad
 def encad(request):
@@ -436,9 +434,9 @@ def import_excel(request):
 
  
 
-def view_encadrent(request):
-    encadrent = Encadrent.objects.all()
-    return render(request, 'view_encadrent.html', {'encadrent': encadrent})
+
+
+
 
  
 
@@ -512,3 +510,42 @@ def add_etudiant(request):
 
 
 
+#etd //identification sur groupe
+def etd(request):
+    etud = Etud.objects.all()
+    simester = Simester.objects.all()
+    return render(request, 'etd.html',{"simester": simester,"etud": etud})
+
+def addetd(request):
+    if request.method == 'POST':
+        idSimester = request.POST['idSimester']
+        idEtud = request.POST['idEtud']
+        libele = request.POST['libele']
+        membres = request.POST.getlist('membres')
+        try:
+            simester = Simester.objects.get(id=idSimester)
+        except Simester.DoesNotExist:
+            return render(request, 'votre_template.html', {'error_message': 'Simester introuvable'})
+        # Effectuez les opérations nécessaires avec les données soumises
+        # par exemple, enregistrez-les dans la base de données
+        gr = grp.objects.create(
+            idSimester=idSimester, idEtud=idEtud, libele=libele 
+        )
+        for membres in membres:
+            gr.membres.add(membres)
+        gr.save()
+
+        messages.success(request, "Données enregistrées avec succès.")
+        return redirect('etd')
+
+    # Gérez le cas où la méthode HTTP n'est pas POST si nécessaire
+
+    return render(request, 'votre_template.html')
+
+
+
+
+
+def compte(request):
+     
+    return render(request, 'compte.html')

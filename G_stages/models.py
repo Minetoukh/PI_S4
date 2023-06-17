@@ -39,10 +39,7 @@ class Etud (models.Model):
     def _str_(self):
         return self.id 
        
-class Semestre(models.Model):
-    libele = models.CharField(max_length=40,null=False)
-    def _str_(self):
-        return self.id
+ 
     
  
     
@@ -99,6 +96,7 @@ class grp(models.Model):
         unique_together = ('idSimester', 'idEtud')
 
     libele = models.CharField(max_length=50)
+    # membres = models.ManyToManyField('Etud')
     membres = models.CharField(max_length=50)
 
     def _str_(self):

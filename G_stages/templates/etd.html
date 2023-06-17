@@ -86,20 +86,26 @@
     
     <h1>Créer un groupe</h1>
     
-    <form method="post">
+    <form method="post" action="{% url 'addetd' %}">
        
         {% csrf_token %}
         <div>
-          <label for="id_idSimester">idSimester:</label>
-          <input type="number" name="idSimester" id="id_idSimester">
+          <label for="id_idSimester">Simester:</label>
+          <select name="idSimester" id="idSimester">
+            {% for simester in simester %}
+            <option value="{{ simester.id }}">{{ simester.libele }}</option>
+            {% endfor %}
+          </select><br>
        </div>
         <div>
           <label for="id_idEtud">idEtud:</label>
           <input type="number" name="idEtud" id="id_idEtud">
+           
         </div>
         <div>
           <label for="id_libele">Libelé:</label>
           <input type="text" name="libele" id="id_libele">
+          
       </div>
       <div>
           <label for="matricule">Membres:</label>
