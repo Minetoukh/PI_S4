@@ -88,7 +88,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "g_stages",
         "USER": "root",
-        "PASSWORD": "123456minbhm@",
+        "PASSWORD": "",
         "HOST": "localhost",
         "PORT": "3306"
     }

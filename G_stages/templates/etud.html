@@ -1,16 +1,18 @@
 {% extends "base/base.html" %} {% block body %}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+</head>
 <h1>etudiants</h1>
 <a href="{% url 'et' %}" class="btn btn-success" style="width: max-content;">Ajouter</a>
 
 <table class="table">
     <thead>
         <tr>
-           
             <th scope="col">Matricule</th>
-            <th scope="col">nom</th>
-            <th scope="col">prenom</th>
-            <th scope="col">dep</th>
-             
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Departement</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -25,8 +27,12 @@
             <th scope="row">{{etud.Dep.libele}}</th>
              
 
-            <td><a class="btn btn-primary btn-xs" href="{% url 'etud_update' etud.id  %}"><span class="glyphicon glyphicon-edit">Update</span></a></td>
-            <td><a href="{% url 'delete_etud' etud.id  %}" class="btn btn-danger">Cancel</a></td>
+            <td>
+                <a class="btn btn-primary btn-xs" href="{% url 'etud_update' etud.id  %}">
+                <span class="glyphicon glyphicon-edit"><i class="bi bi-pen"></i>Modifier</span>
+                </a>
+            </td>
+            <td><a href="{% url 'delete_etud' etud.id  %}" class="btn btn-danger">Supprimer</a></td>
 
         </tr>
         {%endfor%}

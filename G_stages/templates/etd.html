@@ -20,7 +20,7 @@
                         success: function (data) {
                             response($.map(data, function (item) {
                                 return {
-                                    label: item.NomComplet,
+                                    label: item.Nom,
                                     value: item.matricule
                                 };
                             }));
@@ -42,7 +42,7 @@
                 }
             }).autocomplete("source")._renderItem = function (ul, item) {
                 return $("<li>")
-                    .append("<div>" + item.NomComplet +"</div>")
+                    .append("<div>" + item.Nom + "</div>")
                     .appendTo(ul);
             };
         });
@@ -78,59 +78,73 @@
 
 </head>
 <body>
-    
-<h1>Saisir un stage</h1>
 <pre> <a href="{% url 'stg' %}">stage</a>                               <a href="{% url 'encad' %}">Encadrant</a>                                       <a href="{% url 'etd' %}">Identification sur groupe </a>  </pre>
 
 
     
     <h1>Créer un groupe</h1>
-    
-    <form method="post" action="{% url 'addetd' %}">
+    <div class="container mt-4">
+        <form  class="form-group" method="post">
        
-        {% csrf_token %}
-        <div>
-          <label for="id_idSimester">Simester:</label>
-          <select name="idSimester" id="idSimester">
-            {% for simester in simester %}
-            <option value="{{ simester.id }}">{{ simester.libele }}</option>
-            {% endfor %}
-          </select><br>
-       </div>
-        <div>
-          <label for="id_idEtud">idEtud:</label>
-          <input type="number" name="idEtud" id="id_idEtud">
-           
-        </div>
-        <div>
-          <label for="id_libele">Libelé:</label>
-          <input type="text" name="libele" id="id_libele">
-          
-      </div>
-      <div>
-          <label for="matricule">Membres:</label>
-          <input type="text" name="matricule" id="matricule">
-          <input type="hidden" name="matricule1" id="matricule1" />
-
-      </div>
-        <div >
-            <ul id="divAddAnother">
-            </ul>
-        </div>
-
-
-
-      
-        <button type="submit">Enregistrer</button>
-    </form>
-   
-     
-
-     
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_idSimester">IdSimester :</label>
+              <input type="number" class="form-control" name="idSimester" id="id_idSimester">
+           </div>
+            <div class="form-group">
+              <label for="id_idEtud">IdEtud :</label>
+              <input type="number" class="form-control"  name="idEtud" id="id_idEtud">
+            </div>
+            <div class="form-group" >
+              <label for="id_libele">Libelé :</label>
+              <input type="text" class="form-control" name="libele" id="id_libele">
+          </div>
+          <div class="form-group">
+              <label for="matricule">Membres :</label>
+              <input type="text" class="form-control" name="matricule" id="matricule">
+              <input type="hidden" class="form-control" name="matricule1" id="matricule1" />
     
+          </div>
+            <div class="form-group">
+                <ul id="divAddAnother">
+                </ul>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+        </form>
+    </div>
 
 {% endblock %}
      
     
 </body>
 </html>
+<!-- 
+<div class="container mt-4">
+    <form class="form-group" method="post" action="{% url 'ajouter_encd' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nom">Nom :</label>
+        <input type="text"  class="form-control" id="nom"   placeholder="Nom">
+      </div>
+      <div class="form-group">
+        <label for="nom">Prenom :</label>
+        <input type="text"  class="form-control" id="prenom"   placeholder="Prenom">
+      </div>
+      <div class="form-group">
+        <label>E-mail : </label>
+        <input type="email" class="form-control"  name="E-mail" placeholder="E-mail" >
+      </div>
+      <div class="form-group">
+        <label>Numero: </label>
+        <input type="number" class="form-control"  name="numero" placeholder="Numero" >
+      </div class="form-group">
+      <label for="profile">Profile : </label>
+      <select type="text" id="profile" name="profile" >
+        <option>ENSIGNANT</option>
+        <option>PROFETIONNEL</option>
+      <div>
+    <br>
+      </div>
+      <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
+    </form>
+  </div> -->

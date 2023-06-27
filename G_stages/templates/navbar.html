@@ -2,10 +2,6 @@
 <html>
 
 <head>
-    
-
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         .dropbtn {
@@ -57,7 +53,7 @@
         }
         
         .dropdown-content a:hover {
-            background-color: #6f71ed;
+            background-color: #63636b;
         }
         
         .dropdown:hover .dropdown-content {
@@ -71,7 +67,6 @@
         .navbar {
             padding-left: 0%;
         }
-        
     </style>
 </head>
 
@@ -80,7 +75,9 @@
 
     <nav class="navbar navbar-expand-end navbar-dark bg-dark">
 
-        <a class="nav-link" href="/index">Gestions_Stages</a>
+        <a class="nav-link" href="/index">
+            <img class="logo-img" src="logo.png" alt=""> Gestions_Stages
+        </a>
 
         <div class="dropdown">
             <div class="dropbtn">Administration</div>
@@ -107,29 +104,8 @@
             </div>
         </div>
 
-        <!-- <div class="dropdown">
-            <div class="dropbtn">Entreprise</div>
-            <div class="dropdown-content">
-                <a href="{% url 'entre' %}">Entreprise</a>
-                <a href="{% url 'type_Encadrant' %}">Type_Encadrant</a>
-                
-                <a href="{% url 'type_stage' %}">type_stage</a>
-                 
-                 
-            </div>
-         
-        </div> -->
-         
-         
-
-
-         
         <a class="nav-link" href="/compte">Compte</a>
     </nav>
-    
-    <!-- <div class="dropdown">
-  
-</div> -->
 </header>
 </body>
 

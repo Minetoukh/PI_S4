@@ -11,24 +11,49 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-     <!-- Vos balises d'en-tête existantes -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
      <style>
-      /* Styles spécifiques au footer */
+
       footer {
-          background-color: #f5ecec;
-          padding: 2px;
-          text-align: center;
-      }
+      background-color: #282829;
+      padding: 20px 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .left-section p,
+    .right-section p {
+      margin: 0;
+    }
+    
+    .right-section a {
+      text-decoration: none;
+      color: #000;
+    }
+    
+    .right-section a:hover {
+      text-decoration: underline;
+    }
+    p{
+      color: floralwhite;
+    }
+    .left-section {
+  display: flex;
+  align-items: center;
+}
 
-      footer a {
-          color: #666;
-          text-decoration: none;
-          margin-right: 10px;
-      }
 
-      footer a:hover {
-          color: #000;
-      }
   </style>
   </head>
 
@@ -38,9 +63,21 @@
         {% block body %}
 		{% endblock %}
     </main>
-    <footer>
-      <p>Email : contact@example.com</p>
-       
-  </footer>
+    </head>
+    <body>    
+        <footer>
+          <div class="container">
+            <div class="footer-content">
+              <div class="left-section">
+                <p>&copy; Copyright © 2023 | SupNum Tous droits réservés .</p>
+              </div>
+              <div class="right-section">
+                <a href="http://www.supnum.mr"> <p>www.supnum.mr</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+    
   </body>
 </html>
